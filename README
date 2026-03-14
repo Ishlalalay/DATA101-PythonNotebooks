@@ -1,0 +1,46 @@
+Got it — you’ve received a **Kaggle API token string** instead of the usual `kaggle.json` file. On Windows, you can still authenticate by setting that token as an environment variable. Here’s how to make it work:
+
+---
+
+### 1. Set the Environment Variable
+You can set the token permanently or temporarily:
+
+**Option A: Temporary (Command Prompt / PowerShell)**
+```powershell
+setx KAGGLE_API_TOKEN "KGAT_97ddd9b66699a4e3e9a78c10de2838e3"
+```
+This saves the token in your Windows environment variables. You’ll need to restart your terminal for it to take effect.
+
+**Option B: Permanent (System Settings)**
+- Open **Start Menu → Edit the system environment variables**  
+- Click **Environment Variables…**  
+- Under *User variables*, click **New**  
+  - Name: `KAGGLE_API_TOKEN`  
+  - Value: `KGAT_97ddd9b66699a4e3e9a78c10de2838e3`  
+- Save and restart your terminal.
+
+---
+
+### 2. Use the Token with Kaggle CLI
+Once the variable is set, you can run:
+```powershell
+kaggle competitions list
+```
+or for datasets:
+```powershell
+kaggle datasets download -d bwandowando/philippine-cities-air-quality-index-data-2026 -p ./data --unzip
+```
+
+---
+
+### 3. Automating Updates
+Now that authentication works, you can schedule periodic downloads:
+
+- **Windows Task Scheduler** → Run the above command daily/weekly.  
+- Or wrap it in a Python script that calls `os.environ["KAGGLE_API_TOKEN"]` and uses the Kaggle API client.
+
+---
+
+✅ This way, you don’t need `kaggle.json` — the `KAGGLE_API_TOKEN` environment variable is enough to authenticate.  
+
+Would you like me to show you a **Python script that uses this environment variable directly** so you can automate updates without relying on the CLI?
